@@ -16,16 +16,6 @@ public class NetUtil {
 	public static final int FORMAT_VIDEO=2;
 	public static final int FORMAT_TEXT=3;
 	
-	public static void get(int format,String keyWord)
-	{
-		
-	}
-	
-	public static void post(int format,String keyWord)
-	{
-		
-	}
-	
 	public static String Http(String url)
 	{
 		return null;
@@ -55,13 +45,16 @@ public class NetUtil {
 			os.write(sb.toString().getBytes());
 			os.flush();
 			
+			sb=new StringBuffer();
 			BufferedReader br=new BufferedReader(new InputStreamReader(ins));  
 			String str=null;  
 			while((str=br.readLine())!=null)  
 			{  
+				sb.append(str);
 				System.out.println(str);  
 			};
 			br.close();
+			ret=sb.toString();
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
