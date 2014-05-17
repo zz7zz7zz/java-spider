@@ -98,7 +98,7 @@ public class NetUtil {
 	
 	public static String getHost(String url)
 	{
-		String ret = "/";
+		String ret = "";
 		Pattern p = Pattern.compile("(http://|https://)?([^/]*)",Pattern.CASE_INSENSITIVE);
 		Matcher m = p.matcher(url);
 		if(m.find())
