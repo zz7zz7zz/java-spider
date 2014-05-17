@@ -44,6 +44,7 @@ public class NetUtil {
 			
 			os.write(sb.toString().getBytes());
 			os.flush();
+//			System.out.println("send:"+sb.toString());
 			
 			sb=new StringBuffer();
 			BufferedReader br=new BufferedReader(new InputStreamReader(ins));  
@@ -51,7 +52,7 @@ public class NetUtil {
 			while((str=br.readLine())!=null)  
 			{  
 				sb.append(str);
-				System.out.println(str);  
+//				System.out.println(str);  
 			};
 			br.close();
 			ret=sb.toString();
@@ -95,15 +96,14 @@ public class NetUtil {
 		return ret;
 	}
 	
-	
 	public static String getHost(String url)
 	{
 		String ret = "/";
-		Pattern p = Pattern.compile("[^http://][^/]*",Pattern.CASE_INSENSITIVE);
+		Pattern p = Pattern.compile("(http://|https://)?([^/]*)",Pattern.CASE_INSENSITIVE);
 		Matcher m = p.matcher(url);
 		if(m.find())
 		{
-			ret=m.group();
+			ret=m.group(2);
 		}
 		else
 		{
@@ -111,5 +111,4 @@ public class NetUtil {
 		}
 		return ret;
 	}
-
 }
