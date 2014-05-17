@@ -4,28 +4,34 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.spider.IFetchResponse;
 import com.spider.ISpider;
 import com.spider.net.NetUtil;
 
 public class BaiduImageSpider implements ISpider {
 
+	IFetchResponse listener;
 	String httpData;
 	ArrayList<ClassBean> mList=new ArrayList<ClassBean>();
 	
-	@Override
-	public void fetch(String... param) {
-		
-		httpData=NetUtil.XHttp(param[0], 80);
-		
+	
+	public BaiduImageSpider(IFetchResponse listener) {
+		super();
+		this.listener = listener;
 	}
 
+
+	@Override
+	public void fetch(String[] param) {
+		httpData=NetUtil.XHttp(param[0], 80);
+	}
+	
 	@Override
 	public void onHandle() {
 		
 		String tagData=getTags(httpData);
 		httpData=null;
 		handleTagDetail(tagData);
-		
 	}
 
 	@Override
@@ -34,6 +40,10 @@ public class BaiduImageSpider implements ISpider {
 			System.out.println(mList.get(i));
 		}
 		
+		if(null !=listener)
+		{
+			listener.onResponse(mList);
+		}
 	}
 
 	private String getTags(String httpData)
@@ -72,5 +82,5 @@ public class BaiduImageSpider implements ISpider {
 			} 
 		}
 	}
-
+	
 }

@@ -10,7 +10,7 @@ public interface ISpider {
 	/**
 	 * 抓取
 	 */
-	public void fetch(String ... param);
+	public void fetch(String []param);
 	
 	/**
 	 * 处理数据

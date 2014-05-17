@@ -44,7 +44,6 @@ public class NetUtil {
 			
 			os.write(sb.toString().getBytes());
 			os.flush();
-//			System.out.println("send:"+sb.toString());
 			
 			sb=new StringBuffer();
 			BufferedReader br=new BufferedReader(new InputStreamReader(ins));  
@@ -52,7 +51,7 @@ public class NetUtil {
 			while((str=br.readLine())!=null)  
 			{  
 				sb.append(str);
-//				System.out.println(str);  
+				System.out.println(str);  
 			};
 			br.close();
 			ret=sb.toString();
@@ -67,7 +66,6 @@ public class NetUtil {
 				try {
 					mSocket.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -77,7 +75,6 @@ public class NetUtil {
 				try {
 					os.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -87,7 +84,6 @@ public class NetUtil {
 				try {
 					ins.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -98,17 +94,8 @@ public class NetUtil {
 	
 	public static String getHost(String url)
 	{
-		String ret = "";
 		Pattern p = Pattern.compile("(http://|https://)?([^/]*)",Pattern.CASE_INSENSITIVE);
 		Matcher m = p.matcher(url);
-		if(m.find())
-		{
-			ret=m.group(2);
-		}
-		else
-		{
-			ret=url;
-		}
-		return ret;
+		return m.find()?m.group(2):url;
 	}
 }

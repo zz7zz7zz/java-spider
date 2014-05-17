@@ -6,7 +6,8 @@ public class SpiderUtil {
 	{
 		if(null!=mISpider && null!=url)
 		{
-			mISpider.fetch(url);
+			String []param={url};
+			mISpider.fetch(param);
 			mISpider.onHandle();
 			mISpider.onResponse();
 		}
